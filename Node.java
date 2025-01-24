@@ -12,6 +12,7 @@ public class Node {
 	 * @param block
 	 *              the given memory block
 	 */
+
 	public Node(MemoryBlock block) {
 		this.block = block;
 	}

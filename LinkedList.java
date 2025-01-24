@@ -20,6 +20,20 @@ public class LinkedList {
 		return this.size;
 	}
 
+	public Node getFirst() {
+		if (first == null) {
+			return null;
+		}
+		return this.first;
+	}
+
+	public Node getLast() {
+		if (last == null) {
+			return null;
+		}
+		return this.last;
+	}
+
 	/**
 	 * Gets the node located at the given index in this list.
 	 * 
@@ -113,6 +127,10 @@ public class LinkedList {
 	 *              the given memory block
 	 */
 	public void addFirst(MemoryBlock block) {
+		if (block == null) {
+			throw new IllegalArgumentException("MemoryBlock cannot be null");
+		}
+
 		Node newnNode = new Node(block);
 		if (first == null) {
 			newnNode.next = this.first;
@@ -157,7 +175,7 @@ public class LinkedList {
 		/// 1. count 2. run over the list 
 		int index = 0;
 		Node temp = first;
-		while (temp.next != null) {
+		while (temp != null) {
 			if (temp.getMemoryBlock() == block) {
 				return index;
 			}
@@ -222,12 +240,12 @@ public class LinkedList {
 		//// Write your code here
 		if (block == null) {
 			throw new IllegalArgumentException(
-					"memory block can not be null");
+					"index must be between 0 and size");
 		}
 		int index = indexOf(block);
 		if (index == -1) {
 			throw new IllegalArgumentException(
-					"memory block not found");
+					"index must be between 0 and size");
 
 		}
 		remove(index);
@@ -245,6 +263,12 @@ public class LinkedList {
 	 */
 	public String toString() {
 
-		return "(" + size + " " + first + last + ")";
+		String result = "";
+		Node temp = first;
+		while (temp != null) {
+			result += temp.block + " ";
+			temp = temp.next;
+		}
+		return result;
 	}
 }
